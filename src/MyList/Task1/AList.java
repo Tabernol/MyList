@@ -15,14 +15,14 @@ public class AList {
 
     public boolean add(Object item) {
         if (count == array.length) {
-            Object[] changeArray = new Object[capacity * 3 / 2 + 1];
+            Object[] changeArray = new Object[capacity * 3 / 2 + 1];  // вынеси увеличение массива в одельный метод нафига ты в каждом методе его дублируешь
             for (int i = 0; i < array.length; i++) {
                 changeArray[i] = array[i];
             }
             array = changeArray;
             capacity = array.length;
         }
-        array[count++] = item;
+        array[count++] = item; // --- теперь норм
         return true;//тут все норм?
     }
 
@@ -56,7 +56,7 @@ public class AList {
             throw new IndexOutOfBoundsException();
         }
         for (int i = array.length - 2; i >= index; i--) {
-            array[i + 1] = array[i];
+            array[i + 1] = array[i];  // это не правельная логика на сколько я вижу
         }
         count++;
         array[index] = item;
@@ -67,12 +67,23 @@ public class AList {
         boolean findObject = false;
         for (int i = 0; i < array.length; i++) {// не працювало з циклом FOREACH&?????????? коли брав обєкт а не ячейку массиву
             if (array[i] != null) {
-                if (array[i].equals(item)) {
+                if (array[i].equals(item)) {  //сделай все одним ифом
                     array[i] = null;
                     findObject = true;
                 }
             }
         }
+
+
+           // вот так не работало???
+           /* for (Object obj: array) {
+                if(obj != null){
+                    if (obj.equals(item)) {
+                       obj = null;
+                        findObject = true;
+                    }
+            }*/
+
         return findObject;
     }
 
