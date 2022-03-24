@@ -1,11 +1,16 @@
 package MyList.Task1;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AListTest {
-
+//    @BeforeAll
+//    public void creatAlist (){
+//        AList a = new AList();
+//    }
 
     @Test
     void moreLengh() {
@@ -35,5 +40,12 @@ class AListTest {
     void testMoreLengh2() {
         AList a = new AList();
         assertEquals(a.capacity, a.array.length);
+    }
+
+    @Test
+    void get(int index) {
+        AList a = new AList();
+        a.add(0, 90);
+        assertEquals(90, a.get(0));
     }
 }

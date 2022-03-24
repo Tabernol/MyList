@@ -12,8 +12,7 @@ public class AList {
         Object object = array[index];
         return object;
     }
-
-    public boolean add(Object item) {
+    public void moreLengh(){
         if (count == array.length) {
             Object[] changeArray = new Object[capacity * 3 / 2 + 1];  // вынеси увеличение массива в одельный метод нафига ты в каждом методе его дублируешь
             for (int i = 0; i < array.length; i++) {
@@ -22,19 +21,16 @@ public class AList {
             array = changeArray;
             capacity = array.length;
         }
+    }
+
+    public boolean add(Object item) {
+        moreLengh();
         array[count++] = item; // --- теперь норм
         return true;//тут все норм?
     }
 
     public boolean addFirst(Object item) {
-        if (count == array.length) {
-            Object[] changeArray = new Object[capacity * 3 / 2 + 1];
-            for (int i = 0; i < array.length; i++) {
-                changeArray[i] = array[i];
-            }
-            array = changeArray;
-            capacity = array.length;
-        }
+        moreLengh();
         for (int i = array.length - 2; i >= 0; i--) {
             array[i + 1] = array[i];
         }
@@ -44,17 +40,13 @@ public class AList {
     }
 
     public boolean add(int index, Object item) throws IndexOutOfBoundsException {
-        if (index > array.length) {
-            Object[] changeArray = new Object[capacity * 3 / 2 + 1];
-            for (int i = 0; i < array.length; i++) {
-                changeArray[i] = array[i];
-            }
-            array = changeArray;
-            capacity = array.length;
-        }
+        moreLengh();
         if (index < 0 || index >= capacity) {// тут без = викидається перша не моє виключення а Java
             throw new IndexOutOfBoundsException();
         }
+//        for(int i = index; i<array.length; i++){// todo правильний цикл
+//            Object change = array[index];
+//        }
         for (int i = array.length - 2; i >= index; i--) {
             array[i + 1] = array[i];  // это не правельная логика на сколько я вижу
         }
