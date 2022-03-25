@@ -1,5 +1,8 @@
 package MyList.Task1;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class AList {
     int capacity = 10;
     int count = 0;
@@ -12,7 +15,8 @@ public class AList {
         Object object = array[index];
         return object;
     }
-    public void moreLengh(){
+
+    public void moreLengh() {
         if (count == array.length) {
             Object[] changeArray = new Object[capacity * 3 / 2 + 1];  // вынеси увеличение массива в одельный метод нафига ты в каждом методе его дублируешь
             for (int i = 0; i < array.length; i++) {
@@ -44,9 +48,6 @@ public class AList {
         if (index < 0 || index >= capacity) {// тут без = викидається перша не моє виключення а Java
             throw new IndexOutOfBoundsException();
         }
-//        for(int i = index; i<array.length; i++){// todo правильний цикл
-//            Object change = array[index];
-//        }
         for (int i = array.length - 2; i >= index; i--) {
             array[i + 1] = array[i];  // это не правельная логика на сколько я вижу
         }
@@ -58,23 +59,12 @@ public class AList {
     public boolean remove(Object item) {
         boolean findObject = false;
         for (int i = 0; i < array.length; i++) {// не працювало з циклом FOREACH&?????????? коли брав обєкт а не ячейку массиву
-            if (array[i] != null) {
-                if (array[i].equals(item)) {  //сделай все одним ифом
-                    array[i] = null;
-                    findObject = true;
-                }
+            if (array[i] != null && array[i].equals(item)) {//сделай все одним ифом
+                array[i] = null;
+                findObject = true;
+                count--;
             }
         }
-
-
-           // вот так не работало???
-           /* for (Object obj: array) {
-                if(obj != null){
-                    if (obj.equals(item)) {
-                       obj = null;
-                        findObject = true;
-                    }
-            }*/
 
         return findObject;
     }
@@ -85,7 +75,13 @@ public class AList {
             throw new IndexOutOfBoundsException();
         }
         Object object = array[index];
-        array[index] = null;
+        if(array[index] != null){
+            array[index] = null;
+            count--;
+        }
+        else{
+            System.out.println("Not have Object at this index");
+        }
         return object;
     }
 
@@ -93,6 +89,7 @@ public class AList {
         for (int i = 0; i < array.length; i++) {
             array[i] = null;
         }
+        count = 0;
     }
 
     public boolean contains(Object item) {
@@ -108,13 +105,13 @@ public class AList {
     }
 
     public int size() {
-        int count2 = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != null) {
-                count2++;
-            }
-        }
-        return count2;
+//        int count2 = 0;
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i] != null) {
+//                count2++;
+//            }
+//        }
+        return count;
     }
 
     public boolean isEmpty() {
@@ -131,6 +128,21 @@ public class AList {
         for (Object ob : array) {
             System.out.print(ob + " ");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AList aList = (AList) o;
+        return capacity == aList.capacity && count == aList.count && Arrays.equals(array, aList.array);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(capacity, count);
+        result = 31 * result + Arrays.hashCode(array);
+        return result;
     }
 }
 
