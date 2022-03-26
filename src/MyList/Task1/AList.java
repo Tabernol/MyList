@@ -29,7 +29,13 @@ public class AList {
 
     public boolean add(Object item) {
         moreLengh();
-        array[count++] = item; // --- теперь норм
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                array[i] = item;        // --- теперь норм??????????????
+                break;
+            }
+        }
+        count++;
         return true;//тут все норм?
     }
 
@@ -65,22 +71,17 @@ public class AList {
                 count--;
             }
         }
-
         return findObject;
     }
 
     public Object remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= capacity) {
-            System.out.println("my exeption");
             throw new IndexOutOfBoundsException();
         }
         Object object = array[index];
-        if(array[index] != null){
+        if (array[index] != null) {
             array[index] = null;
             count--;
-        }
-        else{
-            System.out.println("Not have Object at this index");
         }
         return object;
     }
