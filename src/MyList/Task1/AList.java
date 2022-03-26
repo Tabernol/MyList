@@ -106,12 +106,6 @@ public class AList {
     }
 
     public int size() {
-//        int count2 = 0;
-//        for (int i = 0; i < array.length; i++) {
-//            if (array[i] != null) {
-//                count2++;
-//            }
-//        }
         return count;
     }
 

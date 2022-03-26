@@ -210,11 +210,88 @@ class AListTest {
     }
     //Method contains return true if array have Obejct
     @Test
-    void contains () {
+    void containsReturnTrue () {
         a.add("q");
-        AList e = new AList();
-
+        assertEquals(true,a.contains("q"));
+    }
+    @Test
+    void containsReturnFalse(){
+        a.add(1);
+        a.add(23);
+        a.add(4);
+        assertEquals(false,a.contains(2));
+    }
+    @Test
+    void containsIfNull (){
+        assertEquals(false,a.contains(null));
+    }
+    @Test
+    void containsMoreOneTrue (){
+        a.add(1);
+        a.add(1);
+        a.add(1);
+        assertEquals(true,a.contains(1));
+    }
+    // Method size return count of not null index
+    @Test
+    void sizeCheck1 (){
+        a.add(4);
+        a.add(3);
+        a.add(2);
+        assertEquals(3,a.size());
+    }
+    @Test
+    void sizeCheck2 (){
+        a.add(1);
+        a.add(42);
+        a.add(3);
+        a.add(6);
+        a.add(7);
+        a.add(8);
+        a.remove(4);
+        assertEquals(5, a.size());
+    }
+    @Test
+    void sizeCheck3 (){
+        a.add("dfg");
+        a.add(4,"sdf");
+        assertEquals(2,a.size());
+    }
+    @Test
+    void sizeCheck4 (){
+        a.add("dfg");
+        a.add(4,"sdf");
+        a.add(9,"sdf");
+        a.clear();
+        assertEquals(0,a.size());
+    }
+//    Method isEmpty return true if array empty
+    @Test
+    void isEmpty1 (){
+        a.add("io");
+        assertEquals(false,a.isEmpty());
+    }
+    @Test
+    void isEmpty2 (){
+        a.add("dfg");
+        a.add(4,"sdf");
+        a.add(9,"sdf");
+        a.clear();
+        assertEquals(true, a.isEmpty());
+    }
+    @Test
+    void isEmpty3 (){
+        a.add("dfg");
+        a.add(4,"sdf");
+        a.remove(4);
+        a.remove("dfg");
+        assertEquals(true, a.isEmpty());
+    }
+    @Test
+    void isEmpty4 (){
+        a.add(null);
+        assertEquals(true,a.isEmpty());
     }
 
-   
+
 }
