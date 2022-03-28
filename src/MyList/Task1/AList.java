@@ -1,5 +1,7 @@
 package MyList.Task1;
 
+import MyList.Task2.List;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -76,6 +78,7 @@ public class AList {
 
     public Object remove(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= capacity) {
+            System.out.println("my exeption");
             throw new IndexOutOfBoundsException();
         }
         Object object = array[index];
@@ -123,21 +126,6 @@ public class AList {
         for (Object ob : array) {
             System.out.print(ob + " ");
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AList aList = (AList) o;
-        return capacity == aList.capacity && count == aList.count && Arrays.equals(array, aList.array);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(capacity, count);
-        result = 31 * result + Arrays.hashCode(array);
-        return result;
     }
 }
 
