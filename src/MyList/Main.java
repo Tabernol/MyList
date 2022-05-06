@@ -1,29 +1,26 @@
 package MyList;
 
 import MyList.Task1.AList;
+import MyList.Task2.RList;
 
 public class Main {
 
     public static void main(String[] args) {
         AList a = new AList();
-        a.add(1);
-        a.add(2);
-        a.add(3);
-        a.add(4);
-        a.add(5);
-        a.add(6);
-        a.add(7);
-        a.add(8);
-        a.add(3, "ghjk");
-        a.add(0, "0");
-        a.add(7, "78");
-        a.add(15, "78");
-        a.remove(1);
-        a.remove(((Object) 78));
-        System.out.println(a.size());
+        RList r = new RList();
+        r.add("rt");
+        r.add("2");
+        r.add("3");
+        r.add("4");
+        r.add("5");
+        r.add("6");
+        r.add("7");
+        r.add("8");
+        r.moreLength();
 
-//        a.clear();
-        a.showArray();
+        r.showArray();
+
+
 
     }
 }

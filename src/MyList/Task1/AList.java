@@ -5,10 +5,14 @@ import MyList.Task2.List;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class AList {
+public class AList implements List {
     int capacity = 10;
     int count = 0;
     Object[] array = new Object[capacity];
+
+    public AList() {
+        super();
+    }
 
     public Object get(int index) throws IndexOutOfBoundsException {
         if (index >= capacity) {
@@ -16,6 +20,9 @@ public class AList {
         }
         Object object = array[index];
         return object;
+    }
+
+    public void moreLength() {
     }
 
     public void moreLengh() {
@@ -53,11 +60,11 @@ public class AList {
 
     public boolean add(int index, Object item) throws IndexOutOfBoundsException {
         moreLengh();
-        if (index < 0 || index >= capacity) {// тут без = викидається перша не моє виключення а Java
+        if (index < 0 || index >= capacity) {
             throw new IndexOutOfBoundsException();
         }
         for (int i = array.length - 2; i >= index; i--) {
-            array[i + 1] = array[i];  // это не правельная логика на сколько я вижу
+            array[i + 1] = array[i];
         }
         count++;
         array[index] = item;
